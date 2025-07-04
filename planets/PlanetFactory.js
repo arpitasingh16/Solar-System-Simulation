@@ -58,33 +58,3 @@ export function createOrbitRing(radius) {
 }
 
 
-export function createSpeedSlider(name) {
-  const container = document.getElementById('controls');
-  const wrapper = document.createElement('div');
-  wrapper.style.marginBottom = '10px';
-
-  const label = document.createElement('label');
-  label.textContent = `${name} Speed`;
-  label.style.display = 'block';
-
-  const input = document.createElement('input');
-  input.type = 'range';
-  input.min = 0;
-  input.max = 2;
-  input.step = 0.01;
-  input.value = orbitSpeeds[name];
-  input.style.width = '150px';
-
-  const valueDisplay = document.createElement('span');
-  valueDisplay.textContent = ` ${orbitSpeeds[name]}`;
-
-  input.addEventListener('input', () => {
-    orbitSpeeds[name] = parseFloat(input.value);
-    valueDisplay.textContent = ` ${input.value}`;
-  });
-
-  wrapper.appendChild(label);
-  wrapper.appendChild(input);
-  wrapper.appendChild(valueDisplay);
-  container.appendChild(wrapper);
-}
