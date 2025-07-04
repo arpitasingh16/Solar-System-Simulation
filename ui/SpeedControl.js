@@ -40,7 +40,7 @@ export function setupSpeedControls(planetNames) {
 
   // Sliders
   planetNames.forEach(name => {
-    orbitSpeeds[name] = 0.5;
+    orbitSpeeds[name] = +(Math.random() * 2).toFixed(2);
 
     const wrapper = document.createElement('div');
     wrapper.style.marginBottom = '10px';
