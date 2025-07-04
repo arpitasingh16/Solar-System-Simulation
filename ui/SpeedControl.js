@@ -1,7 +1,7 @@
 export const orbitSpeeds = {};
 
-export function setupSpeedControls(planetNames) {
-  // Create toggle button
+export function setupSpeedControls(planetData) {
+  // Toggle Button
   const toggleBtn = document.createElement('button');
   toggleBtn.textContent = 'Show Controls';
   toggleBtn.style.position = 'absolute';
@@ -12,7 +12,7 @@ export function setupSpeedControls(planetNames) {
   toggleBtn.style.fontSize = '14px';
   document.body.appendChild(toggleBtn);
 
-  // Create controls panel (initially hidden)
+  // Sliders Panel
   const container = document.createElement('div');
   container.id = 'controls';
   container.style = `
@@ -31,16 +31,15 @@ export function setupSpeedControls(planetNames) {
   `;
   document.body.appendChild(container);
 
-  // Toggle show/hide on button click
   toggleBtn.onclick = () => {
     const isVisible = container.style.display === 'block';
     container.style.display = isVisible ? 'none' : 'block';
     toggleBtn.textContent = isVisible ? 'Show Controls' : 'Hide Controls';
   };
 
-  // Sliders
-  planetNames.forEach(name => {
-    orbitSpeeds[name] = +(Math.random() * 2).toFixed(2);
+  // Sliders for each planet
+  planetData.forEach(({ name, orbitSpeed }) => {
+    orbitSpeeds[name] = orbitSpeed;
 
     const wrapper = document.createElement('div');
     wrapper.style.marginBottom = '10px';
@@ -52,13 +51,13 @@ export function setupSpeedControls(planetNames) {
     const input = document.createElement('input');
     input.type = 'range';
     input.min = 0;
-    input.max = 2;
+    input.max = 5;
     input.step = 0.01;
-    input.value = orbitSpeeds[name];
+    input.value = orbitSpeed;
     input.style.width = '150px';
 
     const valueDisplay = document.createElement('span');
-    valueDisplay.textContent = ` ${orbitSpeeds[name]}`;
+    valueDisplay.textContent = ` ${orbitSpeed}`;
 
     input.addEventListener('input', () => {
       orbitSpeeds[name] = parseFloat(input.value);
@@ -71,4 +70,3 @@ export function setupSpeedControls(planetNames) {
     container.appendChild(wrapper);
   });
 }
-

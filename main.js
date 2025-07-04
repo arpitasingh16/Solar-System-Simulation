@@ -82,7 +82,7 @@ function init() {
     scene.add(planet.pivot);
     planets.push({
       ...planet,
-      spinSpeed: 0.8 + Math.random() * 0.6,
+      spinSpeed: 0.6 + Math.random() * 0.5
     });
 
     scene.add(createOrbitRing(data.distance));
@@ -90,7 +90,7 @@ function init() {
 
   //Set up speed control UI
   const planetNames = planetData.map(p => p.name);
-  setupSpeedControls(planetNames);
+  setupSpeedControls(planetData);
   initLabelSystem(camera, planets);
 
 
